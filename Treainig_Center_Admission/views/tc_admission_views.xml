@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="tc_admission_view_form" model="ir.ui.view">
+		<field name="name">tc.admission.form</field>
+		<field name="model">tc.admission</field>
+		<field name="arch" type="xml">
+			<form string="Admissions">
+				<header>
+					<button string="Confirm" name="action_confirm" states="draft" type="object" class="oe_highlight"/>
+					<button string="Set TO Draft" name="set_to_draft" states="confirm" type="object" class="oe_highlight"/>
+					<button string="Cancel" name="action_cancel" states="confirm" type="object" class="oe_highlight"/>
+					<button string="Approve" name="action_approve" states="confirm" type="object" class="oe_highlight"/>
+
+					<field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve"/>
+				</header>
+				<sheet>
+					<div class="oe_title">
+						<h1>
+							<field name="name" placeholder="Students Name" readonly="True" force_save="True"/>
+						</h1>
+					</div>
+					<table width="80%">
+						<tr>
+							<td width="18%" font-size="100px"> <b>Name</b></td>
+							<td> <field name="first_name" required="1" placeholder="First Name"/> </td>
+							<td> <field name="Second_name" required="1" placeholder="Second Name"/> </td>
+							<td> <field name="Third_name" required="1" placeholder="Third Name"/> </td>
+							<td> <field name="Fourth_name" required="1" placeholder="Fourth Name"/> </td>
+						</tr>
+					</table>
+					<notebook>
+						<page string="Info" name="info">
+							<group>
+							<field name="academic_number"/>
+							<field name="birth_date"/>
+							<!-- <field name="age"/> -->
+							<field name="gender"/>
+							<field name="identity_type"/>
+							<field name="national_number" 
+								attrs="{'invisible':[('identity_type','!=','national_number')]}" />
+							<field name="passport" 
+								attrs="{'invisible':[('identity_type','!=','passport')]}"/>
+							<field name="work_place"/>
+							<field name="is_student"/>
+							<field name="student_id"/>
+						</group>
+					</page>
+				<!-- 	<page string="Batch And Courses">
+						<group>
+						<field name="course_id"/>
+						<field name="batch_id"/>
+					</group>
+					</page> -->
+				</notebook>
+			</sheet>
+		</form>
+	</field>
+</record>
+<record id="tc_admission_view_tree" model="ir.ui.view">
+	<field name="name">tc.admission.tree</field>
+	<field name="model">tc.admission</field>
+	<field name="arch" type="xml">
+		<tree string="Admissions">
+			<field name="name"/>
+			<field name="academic_number"/>
+			<field name="birth_date"/>
+			<field name="gender"/>
+			<field name="work_place"/>
+		</tree>
+	</field>
+</record>
+<record id="tc_admission_view_search" model="ir.ui.view">
+	<field name="name">tc.admission.search</field>
+	<field name="model">tc.admission</field>
+	<field name="arch" type="xml">
+		<search>
+			<field name="name"/>
+			<field name="course_id"/>
+			<field name="batch_id"/>
+			<filter string="New" name="draft" domain="[('state','=','draft')]"/>
+			<filter string="Confirm" name="confirm" domain="[('state','=','confirm')]"/>
+			<group expand="0" string="Group By">
+				<filter string="Status" name="status" context="{'group_by':'state'}"/>
+				<filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+			</group>
+			<searchpanel >
+				<field name="course_id" icon="fa-filter" enable_counters=""/>
+			</searchpanel>
+		</search>
+	</field>
+</record>
+<record id="action_tc_admission" model="ir.actions.act_window">
+	<field name="name">Admissions</field>
+	<field name="res_model">tc.admission</field>
+	<field name="view_mode">tree,form</field>
+	<field name="help" type="html">
+		<p class="o_view_nocontent_smiling_face">
+			Create a new Admission
+		</p>
+	</field>
+</record>
+</odoo>

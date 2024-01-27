@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="tc_subject_view_form" model="ir.ui.view">
+		<field name="name">tc.subject.form</field>
+		<field name="model">tc.subject</field>
+		<field name="arch" type="xml">
+			<form string="Subject">
+				<sheet>
+					<group>
+				<field name="name"/>
+				<field name="code"/>
+				<field name="date"/>
+				<field name="type"/>
+				<field name="hours"/>
+				<field name="subject_vocabulary"/>
+			</group>
+			</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="tc_subject_view_tree" model="ir.ui.view">
+		<field name="name">tc.subject.tree</field>
+		<field name="model">tc.subject</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="code"/>
+				<field name="type"/>
+				<field name="hours"/>
+				<field name="subject_vocabulary"/>
+		    </tree>
+		</field>
+	</record>
+	<record id="action_tc_subject" model="ir.actions.act_window">
+		<field name="name">Subject</field>
+		<field name="res_model">tc.subject</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				create a new subject
+			</p>
+		</field>
+	</record>
+</odoo>

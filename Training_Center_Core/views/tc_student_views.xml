@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="tc_student_view_form" model="ir.ui.view">
+		<field name="name">tc.student.form</field>
+		<field name="model">tc.student</field>
+		<field name="arch" type="xml">
+			<form string="Student">
+				<sheet>
+					<field name="image" widget='image' class="oe_avatar"/>
+					<div class="oe_title">
+						<h1>
+							<field name="name" placeholder="Students Name" readonly="True" force_save="True"/>
+						</h1>
+					</div>
+					<table width="80%">
+						<tr>
+							<td width="18%" font-size="100px"> <b>Name</b></td>
+							<td> <field name="first_name" required="1" placeholder="First Name"/> </td>
+							<td> <field name="Second_name" required="1" placeholder="Second Name"/> </td>
+							<td> <field name="Third_name" required="1" placeholder="Third Name"/> </td>
+							<td> <field name="Fourth_name" required="1" placeholder="Fourth Name"/> </td>
+						</tr>
+					</table>
+					<notebook>
+						<page string="Info" name="info">
+							<group>
+							<field name="academic_number"/>
+							<field name="birth_date"/>
+							<field name="age"/>
+							<field name="gender"/>
+							<field name="identity_type"/>
+							<field name="national_number" 
+								attrs="{'invisible':[('identity_type','!=','national_number')]}" />
+							<field name="passport" 
+								attrs="{'invisible':[('identity_type','!=','passport')]}"/>
+							<field name="work_place"/>
+						</group>
+					</page>
+					<page string="Hobbies" name="hobbies">
+						<group>
+							<field name="hobbies" nolable="1" colspan="2"/>
+						</group>
+					</page>
+					<page string="Batch And Courses">
+						<group>
+						<field name="course_id"/>
+						<field name="batch_id"/>
+					</group>
+					</page>
+				</notebook>
+			</sheet>
+		</form>
+	</field>
+</record>
+<record id="tc_student_view_tree" model="ir.ui.view">
+	<field name="name">tc.student.tree</field>
+	<field name="model">tc.student</field>
+	<field name="arch" type="xml">
+		<tree string="Students">
+			<field name="name"/>
+			<field name="academic_number"/>
+			<field name="birth_date"/>
+			<field name="gender"/>
+			<field name="work_place"/>
+		</tree>
+	</field>
+</record>
+<record id="action_tc_student" model="ir.actions.act_window">
+	<field name="name">Students</field>
+	<field name="res_model">tc.student</field>
+	<field name="view_mode">tree,form</field>
+	<field name="help" type="html">
+		<p class="o_view_nocontent_smiling_face">
+			Create a new Student
+		</p>
+	</field>
+</record>
+</odoo>

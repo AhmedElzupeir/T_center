@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="course_info_temp">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="course">
+				<t t-call="web.external_layout">
+					<div class="page">
+						<center><div>
+							<br/>
+							<h2> Course - <span t-esc="course.name"/></h2>
+							<br/>
+						</div></center>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="text-center" width="20%"> Code </th>
+									<th class="text-center" width="50%"> NAme </th>
+									<th class="text-center" width="30%"> Type </th>
+								</tr>
+							</thead>
+							<tbody>
+								<t t-foreach="course.subject_ids" t-as="subject">
+									<tr>
+										<td><span t-esc="subject.code"/></td>
+										<td><span t-esc="subject.name"/></td>
+										<td><span t-esc="subject.type"/></td>
+									</tr>
+								</t>
+							</tbody>
+						</table>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+	<record id="action_course_info_report" model="ir.actions.report">
+		<field name="name">Course Info PDF</field>
+		<field name="model">tc.course</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">Training_Center_Core.course_info_temp</field>
+		<field name="report_file">Training_Center_Core.course_info_temp</field>
+		<field name="print_report_name">'Course - %s' % (object.name)</field>
+		<field name="binding_model_id" ref="model_tc_course"/>
+	</record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="confirm_admissions_wizard_form" model="ir.ui.view">
+		<field name="name">confirm.admissions.wizard.form</field>
+		<field name="model">confirm.admissions</field>
+		<field name="arch" type="xml">
+			<form>
+				<group string="Select Draft Admission">
+					<field name="admission_ids"/>
+				</group>
+				<footer>
+					<button string="Confirm Admission" name="confirm" type="object" class="oe_highlight"/>
+					<button string="Cancel" class="btn btn-secondary" special="cancel"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+	<record id="confirm_admissions_wizard_action" model="ir.actions.act_window">
+		<field name="name">Confirm Asmissions</field>
+		<field name="res_model">confirm.admissions</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+	<menuitem
+		id="confirm_admission_menu"
+		name="Confirm Admission"
+		action="confirm_admissions_wizard_action"
+		parent="Training_Center_Core.tc_root_menu"
+		sequence="15"/>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<menuitem
+		id="tc_root_menu"
+		name="Training Center Admissions"
+		sequence="3">
+
+		<menuitem
+			id="tc_admisiion_menu"
+			name="Admissions"
+			action="action_tc_admission"
+			sequence="10"/>
+
+		<menuitem
+			id="tc_configuration_menu"
+			name="Configuration"
+			sequence="30"/>
+	</menuitem>
+
+<!-- 		<menuitem
+			id="tc_subject_menu"
+			name="Subject"
+			action="action_tc_subject"
+			parent="tc_configuration_menu"
+			sequence="10"/>
+
+		<menuitem
+			id="tc_course_menu"
+			name="Course"
+			action="action_tc_course"
+			parent="tc_configuration_menu"
+			sequence="20"/>
+
+		<menuitem
+			id="tc_batch_menu"
+			name="Batch"
+			action="action_tc_batch"
+			parent="tc_configuration_menu"
+			sequence="30"/> -->
+</odoo>
